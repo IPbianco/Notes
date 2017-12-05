@@ -1,6 +1,6 @@
 function createNote() {
-    newNote = document.getElementById("new-note")
-    notes.push(new Note(newNote.value))
+    newNote = document.getElementById("new-note");
+    notes.push(new Note(newNote.value));
     resetInput(newNote);
     createNoteLink();
 }

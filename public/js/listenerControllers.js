@@ -4,10 +4,10 @@ function addListeners(anchors) {
             function() {
                 addListener(i);
         });
-    }
+    };
 }
 
 function addListener(index) {
-    noteText = document.getElementById("current-note")
-    noteText.innerHTML = `${notes[index].getText()}`
+    noteText = document.getElementById("current-note");
+    noteText.innerHTML = `${notes[index].getText()}`;
 }

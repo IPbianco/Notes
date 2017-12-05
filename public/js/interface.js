@@ -1,15 +1,16 @@
 "use strict";
 
-window.addEventListener("load", function() {
-    var createButton
-    var notes = []
-    var linksList
-    var content
-    var newNote
-    var noteText
-    var links
+var createButton;
+var notes = [];
+var linksList;
+var content;
+var newNote;
+var noteText;
+var links;
+var MAX_SUMMARY_LENGTH = 20;
 
-    content = document.getElementById("content")
+window.addEventListener("load", function() {
+    content = document.getElementById("content");
 
     content.innerHTML = '<h1>Notes</h1>' +
                         '<input type="text" id="new-note" placeholder="Enter new note">' +
@@ -20,13 +21,13 @@ window.addEventListener("load", function() {
                         '</div>'+
                         '<h2>Note</h2>'+
                         '<div id="current-note">'+
-                        '</div>'
+                        '</div>';
 
-    createButton = document.getElementById("create")
-    linksList = document.getElementById("links-list")
+    createButton = document.getElementById("create");
+    linksList = document.getElementById("links-list");
 
     createButton.addEventListener("click", function() {
         createNote();
         loadLinks();
-    })
-})
+    });
+});
