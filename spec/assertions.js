@@ -5,7 +5,7 @@ var assert = {
         if (!assertionToCheck) {
             throw new Error("Assertion failed: " + assertionToCheck + " is not truthy");
         } else {
-            console.log("yay")
+          return "true"
         }
     },
 
@@ -13,7 +13,7 @@ var assert = {
         if (assertionToCheck) {
             throw new Error("Assertion failed: " + assertionToCheck + " is truthy");
         } else {
-            console.log("yay")
+          return "true"
         }
     },
 
