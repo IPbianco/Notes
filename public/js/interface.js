@@ -7,6 +7,8 @@ window.addEventListener("load", function() {
   var linksList
   var content
   var newNote
+  var noteText
+  var links
 
   content = document.getElementById("content")
 
@@ -28,6 +30,25 @@ window.addEventListener("load", function() {
     newNote = document.getElementById("new-note")
     notes.push(new Note(newNote.value))
     linksList.innerHTML += `<li><a>${notes.slice(-1)[0].getSummary()}</a></li>`
+    loadLinks();
     newNote.value = ""
   })
+
+// helpers
+
+function loadLinks() {
+  links = document.getElementsByTagName("a");
+  addListeners(links);
+}
+
+function addListeners(anchors) {
+  for(let i=0; i < anchors.length; i++) {
+    anchors[i].addEventListener("click",
+      function() {
+        noteText = document.getElementById("current-note")
+        noteText.innerHTML = `${notes[i].getText()}`
+      });
+  }
+}
+
 })
