@@ -7,9 +7,9 @@ function Note(text) {
 
 Note.prototype.setSumary = function(text) {
   if(text.length < 20) {
-  this._summary = text
-  }else {
-  this._summary = text.substr(0, 20) + '...'
+    this._summary = text
+  } else {
+    this._summary = text.substr(0, 20) + '...'
   }
 }
 
