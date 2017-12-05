@@ -1,11 +1,11 @@
 'use strict'
 
 var assert = {
-    isTrue: function(assertionToCheck) {    
+    isTrue: function(assertionToCheck) {
         if (!assertionToCheck) {
             throw new Error("Assertion failed: " + assertionToCheck + " is not truthy");
         } else {
-            console.log("yay")
+          return "true"
         }
     },
 
@@ -13,11 +13,11 @@ var assert = {
         if (assertionToCheck) {
             throw new Error("Assertion failed: " + assertionToCheck + " is truthy");
         } else {
-            console.log("yay")
+          return "true"
         }
     },
 
     returns: function(methodCall, expectedResult) {
-        return methodCall === expectedResult  
+        return methodCall === expectedResult
     }
 };
