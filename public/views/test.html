@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- include source files here... -->
+    <script src="../js/note.js"></script>
+    <script src="../js/notes.js"></script>
+    <script src="../js/interfaceView.js"></script>
+
+    <!-- include spec files here... -->
+    <script src="../../spec/assertions.js"></script>
+    <script src="../../spec/noteSpec.js"></script>
+    <script src="../../spec/notesSpec.js"></script>
+    <script src="../../spec/interfaceViewSpec.js"></script>
+  </head>
+  <body>
+    <div>
+      <ul id="test-list">
+
+      </ul>
+    </div>
+    <script>
+      var testList = document.getElementById("test-list")
+      testList.innerHTML+= `<li> ${testNoteInstanceOfNote.name} : ${testNoteInstanceOfNote()} </li>`
+      testList.innerHTML+= `<li> ${testGetTextReturnsTextProperty.name} : ${testGetTextReturnsTextProperty()} </li>`
+      testList.innerHTML+= `<li> ${testGetSummaryReturnsSummaryProperty.name} : ${testGetSummaryReturnsSummaryProperty()} </li>`
+      testList.innerHTML+= `<li> ${testGetNotesReturnsArray.name} : ${testGetNotesReturnsArray()} </li>`
+      testList.innerHTML+= `<li> ${testAddsNoteToArray.name} : ${testAddsNoteToArray()} </li>`
+      testList.innerHTML+= `<li> ${testGetsLastNote.name} : ${testGetsLastNote()} </li>`
+      testList.innerHTML+= `<li> ${testgetHeaderHTML.name} : ${testgetHeaderHTML()} </li>`
+   </script>
+  </body>
+</html>

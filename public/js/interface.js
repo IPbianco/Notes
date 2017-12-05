@@ -1,33 +1,51 @@
 "use strict";
 
 var createButton;
-var notes = [];
+var notes = new Notes();
+var interfaceView = new InterfaceView();
 var linksList;
 var content;
 var newNote;
 var noteText;
 var links;
-var MAX_SUMMARY_LENGTH = 20;
 
 window.addEventListener("load", function() {
-    content = document.getElementById("content");
 
-    content.innerHTML = '<h1>Notes</h1>' +
-                        '<input type="text" id="new-note" placeholder="Enter new note">' +
-                        '<button type="button" id="create">Create</button>' +
-                        '<div id="links">'+
-                            '<ul id="links-list">'+
-                            '</ul>'+
-                        '</div>'+
-                        '<h2>Note</h2>'+
-                        '<div id="current-note">'+
-                        '</div>';
+  content = document.getElementById("content");
+  content.innerHTML = interfaceView.getHeaderHTML()
 
-    createButton = document.getElementById("create");
-    linksList = document.getElementById("links-list");
+  createButton = document.getElementById("create");
+  linksList = document.getElementById("links-list");
 
-    createButton.addEventListener("click", function() {
-        createNote();
-        loadLinks();
-    });
+  createButton.addEventListener("click", function() {
+    createNote();
+    loadLinks();
+  });
 });
+
+
+function loadLinks() {
+    links = document.getElementsByTagName("a");
+    addListeners(links);
+}
+
+function addListeners(anchors) {
+    for(let i=0; i < anchors.length; i++) {
+        anchors[i].addEventListener("click",
+            function() {
+                addListener(i);
+        });
+    };
+}
+
+function addListener(index) {
+    noteText = document.getElementById("current-note");
+    noteText.innerHTML = `${notes[index].getText()}`;
+}
+
+function createNote() {
+    var newNote = document.getElementById("new-note");
+    notes.addNote(new Note(newNote.value));
+    newNote.value = "";
+    linksList.innerHTML += `<li><a>${notes.getLast().getSummary()}</a></li>`;
+}
