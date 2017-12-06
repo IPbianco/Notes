@@ -1,15 +1,23 @@
-function Notes() {
-  this._notes = []
-}
+"use strict";
 
-Notes.prototype.getNotes = function() {
-  return this._notes
-}
+(function (exports) {
 
-Notes.prototype.addNote = function(text, constructor = Note) {
-  this._notes.push(new constructor(text))
-}
+  function Notes() {
+    this._notes = []
+  }
 
-Notes.prototype.getLast = function(note) {
-  return this.getNotes().slice(-1)[0]
-}
+  Notes.prototype.getNotes = function() {
+    return this._notes
+  }
+
+  Notes.prototype.addNote = function(text, constructor = Note) {
+    this._notes.push(new constructor(text))
+  }
+
+  Notes.prototype.getLast = function(note) {
+    return this.getNotes().slice(-1)[0]
+  }
+
+  exports.Notes = Notes;
+
+})(this);

@@ -12,10 +12,6 @@
     this._summary = (text.length < this._MAX_SUMMARY_LENGTH) ? text : text.substr(0, this._MAX_SUMMARY_LENGTH) + '...';
   }
 
-  FakeNote.prototype.getText = function () {
-    return this._text;
-  }
-
   FakeNote.prototype.getSummary = function () {
     return this._summary;
   }
@@ -44,23 +40,8 @@
     fakeNoteList = new FakeNoteList()
     fakeNoteList.addNote("Testing", FakeNote)
     noteListView = new NoteListView(fakeNoteList)
-
-    return assert.returns(noteListView.getListHTML(), "<ul><li>Testing</li></ul>")
-
+    return assert.called(noteListView.getListHTML(), "<ul><li>Testing</li></ul>")
   }
-
-  // function testNoteListViewhasNotes() {
-  //   var fakeNoteList,
-  //       noteListView;
-  //
-  //   fakeNoteList = new FakeNoteList()
-  //   fakeNoteList.addNote("Testing", FakeNote)
-  //   noteListView = new NoteListView(fakeNoteList)
-  //
-  //   return assert.returns(noteListView.getListHTML(), "<ul><li>Testing</li></ul>")
-  //
-  // }
-
 
   exports.testNoteListViewInstanceOf = testNoteListViewInstanceOf
   exports.testNoteListViewhasNotes = testNoteListViewhasNotes
