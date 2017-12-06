@@ -19,9 +19,15 @@
   }
 
   function testGetNoteHTML() {
-    return assert.returns(noteview.getNoteHTML(), `<div>${fakeNote.getText()}</div>`)
+    return assert.returns(noteview.getNoteHTML(), `<h2>Note</h2><div>${fakeNote.getText()}</div>`)
+  }
+
+  function testGetNoteHeaderHTML() {
+    return assert.returns(noteview.getNoteHeaderHTML(), '<h2>Note</h2>')
   }
 
   exports.testGetNote = testGetNote
   exports.testGetNoteHTML = testGetNoteHTML
+  exports.testGetNoteHeaderHTML= testGetNoteHeaderHTML
+
 })(this)

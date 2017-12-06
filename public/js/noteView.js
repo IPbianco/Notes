@@ -9,12 +9,16 @@
     return this._note
   };
 
-  function addDiv(text) {
-    return '<div>'+ text + '</div>'
+  function _addTag(text, tag) {
+    return `<${tag}>` + text + `</${tag}>`
   }
 
   NoteView.prototype.getNoteHTML = function() {
-    return addDiv(this.getNote().getText())
+    return this.getNoteHeaderHTML() + _addTag(this.getNote().getText(),"div")
+  }
+
+  NoteView.prototype.getNoteHeaderHTML = function() {
+    return _addTag("Note", "h2")
   }
 
   exports.NoteView = NoteView

@@ -20,19 +20,19 @@
   }
 
   function testGetNotesReturnsArray() {
-    var notes = new Notes()
+    var notes = new NoteList()
     var notesArrayString = JSON.stringify(notes.getNotes())
     return assert.returns(notesArrayString, "[]")
   }
 
   function testAddsNoteToArray() {
-    var notes = new Notes()
+    var notes = new NoteList()
     notes.addNote("Antonio", FakeNote)
     return assert.returns(notes.getNotes().length, 1)
   }
 
   function testGetsLastNote() {
-    var notes = new Notes()
+    var notes = new NoteList()
     notes.addNote("Antonio", FakeNote)
     notes.addNote("Ignacio", FakeNote)
     var lastNote = notes.getLast()

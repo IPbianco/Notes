@@ -1,13 +1,13 @@
 "use strict";
 
-var createButton;
-var notes = new Notes();
-var headerView = new headerView();
-var linksList;
+var notes = new NoteList();
+var headerView = new HeaderView();
 var content;
+var createButton;
 var newNote;
-var noteText;
+var linksList;
 var links;
+var noteText;
 
 window.addEventListener("load", function() {
 
@@ -15,37 +15,42 @@ window.addEventListener("load", function() {
   content.innerHTML = headerView.getHeaderHTML()
 
   createButton = document.getElementById("create");
+  newNote = document.getElementById("new-note");
   linksList = document.getElementById("links-list");
+  links = document.getElementsByTagName("a");
+  noteText = document.getElementById("current-note");
 
   createButton.addEventListener("click", function() {
     createNote();
     loadLinks();
+    addListeners(links);
   });
 });
 
-
-function loadLinks() {
-    links = document.getElementsByTagName("a");
-    addListeners(links);
+function createNote() {
+  notes.addNote(newNote.value);
+  resetNewNote()
 }
 
-function addListeners(anchors) {
-    for(let i=0; i < anchors.length; i++) {
-        anchors[i].addEventListener("click",
+function resetNewNote() {
+  newNote.value = ""
+}
+
+function loadLinks() {
+  var noteListView = new NoteListView(notes);
+  linksList.innerHTML = noteListView.getListHTML() ;
+}
+
+function addListeners(links) {
+    for(let i=0; i < links.length; i++) {
+        links[i].addEventListener("click",
             function() {
-                addListener(i);
+                renderNote(i);
         });
     };
 }
 
-function addListener(index) {
-    noteText = document.getElementById("current-note");
-    noteText.innerHTML = `${notes[index].getText()}`;
-}
-
-function createNote() {
-    var newNote = document.getElementById("new-note");
-    notes.addNote(new Note(newNote.value));
-    newNote.value = "";
-    linksList.innerHTML += `<li><a>${notes.getLast().getSummary()}</a></li>`;
+function renderNote(i) {
+  var noteView = new NoteView(notes.getNotes()[i])
+  noteText.innerHTML = `${noteView.getNoteHTML()}`;
 }

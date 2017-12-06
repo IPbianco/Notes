@@ -9,11 +9,8 @@
     return '<h1>Notes</h1>' +
             '<input type="text" id="new-note" placeholder="Enter new note">' +
             '<button type="button" id="create">Create</button>' +
-            '<div id="links">'+
-                '<ul id="links-list">'+
-                '</ul>'+
+            '<div id="links-list">'+
             '</div>'+
-            '<h2>Note</h2>'+
             '<div id="current-note">'+
             '</div>';
   }
