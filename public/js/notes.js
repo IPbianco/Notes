@@ -6,8 +6,8 @@ Notes.prototype.getNotes = function() {
   return this._notes
 }
 
-Notes.prototype.addNote = function(note) {
-  this._notes.push(note)
+Notes.prototype.addNote = function(text, constructor = Note) {
+  this._notes.push(new constructor(text))
 }
 
 Notes.prototype.getLast = function(note) {

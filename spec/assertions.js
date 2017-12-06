@@ -18,6 +18,18 @@ var assert = {
     },
 
     returns: function(methodCall, expectedResult) {
-        return methodCall === expectedResult
+      if(methodCall !== expectedResult) {
+        throw new Error(methodCall + "does not return" + expectedResult)
+      } else {
+        return "true"
+      }
+    },
+
+    called: function(object, property, count) {
+      if(object.property !== count) {
+        throw new Error(property + "was not called" + count + "times")
+      } else {
+        return "true"
+      }
     }
 };

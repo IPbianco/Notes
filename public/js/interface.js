@@ -2,7 +2,7 @@
 
 var createButton;
 var notes = new Notes();
-var interfaceView = new InterfaceView();
+var headerView = new headerView();
 var linksList;
 var content;
 var newNote;
@@ -12,7 +12,7 @@ var links;
 window.addEventListener("load", function() {
 
   content = document.getElementById("content");
-  content.innerHTML = interfaceView.getHeaderHTML()
+  content.innerHTML = headerView.getHeaderHTML()
 
   createButton = document.getElementById("create");
   linksList = document.getElementById("links-list");

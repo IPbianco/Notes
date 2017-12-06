@@ -1,8 +1,8 @@
-function InterfaceView() {
+function HeaderView() {
 
 }
 
-InterfaceView.prototype.getHeaderHTML = function() {
+HeaderView.prototype.getHeaderHTML = function() {
   return '<h1>Notes</h1>' +
           '<input type="text" id="new-note" placeholder="Enter new note">' +
           '<button type="button" id="create">Create</button>' +

@@ -6,13 +6,15 @@
     <!-- include source files here... -->
     <script src="../js/note.js"></script>
     <script src="../js/notes.js"></script>
-    <script src="../js/interfaceView.js"></script>
+    <script src="../js/headerView.js"></script>
+    <script src="../js/noteListView.js"></script>
 
     <!-- include spec files here... -->
     <script src="../../spec/assertions.js"></script>
     <script src="../../spec/noteSpec.js"></script>
     <script src="../../spec/notesSpec.js"></script>
-    <script src="../../spec/interfaceViewSpec.js"></script>
+    <script src="../../spec/headerViewSpec.js"></script>
+    <script src="../../spec/noteListViewSpec.js"></script>
   </head>
   <body>
     <div>
@@ -29,6 +31,8 @@
       testList.innerHTML+= `<li> ${testAddsNoteToArray.name} : ${testAddsNoteToArray()} </li>`
       testList.innerHTML+= `<li> ${testGetsLastNote.name} : ${testGetsLastNote()} </li>`
       testList.innerHTML+= `<li> ${testgetHeaderHTML.name} : ${testgetHeaderHTML()} </li>`
+      testList.innerHTML+= `<li> ${testNoteListViewInstanceOf.name} : ${testNoteListViewInstanceOf()} </li>`
+      testList.innerHTML+= `<li> ${testNoteListViewhasNotes.name} : ${testNoteListViewhasNotes()} </li>`
    </script>
   </body>
 </html>
