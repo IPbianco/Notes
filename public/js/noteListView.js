@@ -9,20 +9,20 @@
     return this._notesList;
   }
 
-  function addLi(text) {
+  function _addLi(text) {
     return "<li>" + text + "</li>";
   }
 
-  function addUl(text) {
+  function _addUl(text) {
     return "<ul>" + text + "</ul>";
   }
 
   NoteListView.prototype.getListHTML = function() {
     var listHTML = "";
     this.getNotesList().getNotes().forEach(function(note) {
-      listHTML += addLi(note.getSummary());
+      listHTML += _addLi(note.getSummary());
     })
-    return addUl(listHTML);
+    return _addUl(listHTML);
   }
 
   exports.NoteListView = NoteListView;

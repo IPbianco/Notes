@@ -8,6 +8,7 @@
     <script src="../js/notes.js"></script>
     <script src="../js/headerView.js"></script>
     <script src="../js/noteListView.js"></script>
+    <script src="../js/noteView.js"></script>
 
     <!-- include spec files here... -->
     <script src="../../spec/assertions.js"></script>
@@ -15,6 +16,7 @@
     <script src="../../spec/notesSpec.js"></script>
     <script src="../../spec/headerViewSpec.js"></script>
     <script src="../../spec/noteListViewSpec.js"></script>
+    <script src="../../spec/noteViewSpec.js"></script>
   </head>
   <body>
     <div>
@@ -32,7 +34,10 @@
       testList.innerHTML+= `<li> ${testGetsLastNote.name} : ${testGetsLastNote()} </li>`
       testList.innerHTML+= `<li> ${testgetHeaderHTML.name} : ${testgetHeaderHTML()} </li>`
       testList.innerHTML+= `<li> ${testNoteListViewInstanceOf.name} : ${testNoteListViewInstanceOf()} </li>`
-      testList.innerHTML+= `<li> ${testNoteListViewhasNotes.name} : ${testNoteListViewhasNotes()} </li>`
+      testList.innerHTML+= `<li> ${testGetListHTML1Note.name} : ${testGetListHTML1Note()} </li>`
+      testList.innerHTML+= `<li> ${testGetListHTML2Notes.name} : ${testGetListHTML2Notes()} </li>`
+      testList.innerHTML+= `<li> ${testGetNote.name} : ${testGetNote()} </li>`
+      testList.innerHTML+= `<li> ${testGetNoteHTML.name} : ${testGetNoteHTML()} </li>`
    </script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 "use strict";
 
 (function(exports) {
-    function Note(text) {
+  function Note(text) {
    	this._text = text;
     this._MAX_SUMMARY_LENGTH = 20;
    	this.setSumary(text);

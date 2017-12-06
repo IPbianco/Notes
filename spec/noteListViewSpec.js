@@ -33,17 +33,29 @@
     return assert.isTrue(noteListView instanceof NoteListView)
   }
 
-  function testNoteListViewhasNotes() {
+  function testGetListHTML1Note() {
     var fakeNoteList,
         noteListView;
 
     fakeNoteList = new FakeNoteList()
     fakeNoteList.addNote("Testing", FakeNote)
     noteListView = new NoteListView(fakeNoteList)
-    return assert.called(noteListView.getListHTML(), "<ul><li>Testing</li></ul>")
+    return assert.returns(noteListView.getListHTML(), "<ul><li>Testing</li></ul>")
+  }
+
+  function testGetListHTML2Notes() {
+    var fakeNoteList,
+        noteListView;
+
+    fakeNoteList = new FakeNoteList()
+    fakeNoteList.addNote("Testing", FakeNote)
+    fakeNoteList.addNote("Testing", FakeNote)
+    noteListView = new NoteListView(fakeNoteList)
+    return assert.returns(noteListView.getListHTML(), "<ul><li>Testing</li><li>Testing</li></ul>")
   }
 
   exports.testNoteListViewInstanceOf = testNoteListViewInstanceOf
-  exports.testNoteListViewhasNotes = testNoteListViewhasNotes
+  exports.testGetListHTML1Note = testGetListHTML1Note
+  exports.testGetListHTML2Notes = testGetListHTML2Notes
 
 })(this)

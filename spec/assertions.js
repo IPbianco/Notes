@@ -24,12 +24,4 @@ var assert = {
         return "true"
       }
     },
-
-    called: function(object, property, count) {
-      if(object.property !== count) {
-        throw new Error(property + "was not called" + count + "times")
-      } else {
-        return "true"
-      }
-    }
 };

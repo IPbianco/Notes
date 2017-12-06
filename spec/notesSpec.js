@@ -1,3 +1,5 @@
+"use strict";
+
 (function(exports) {
   function FakeNote(text) {
     this._text = text;
