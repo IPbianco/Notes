@@ -40,7 +40,7 @@
     fakeNoteList = new FakeNoteList()
     fakeNoteList.addNote("Testing", FakeNote)
     noteListView = new NoteListView(fakeNoteList)
-    return assert.returns(noteListView.getListHTML(), "<ul><li><a>Testing</a></li></ul>")
+    return assert.returns(noteListView.getListHTML(), "<ul><li><a href=#1>Testing</a></li></ul>")
   }
 
   function testGetListHTML2Notes() {
@@ -51,7 +51,7 @@
     fakeNoteList.addNote("Testing", FakeNote)
     fakeNoteList.addNote("Testing", FakeNote)
     noteListView = new NoteListView(fakeNoteList)
-    return assert.returns(noteListView.getListHTML(), "<ul><li><a>Testing</a></li><li><a>Testing</a></li></ul>")
+    return assert.returns(noteListView.getListHTML(), "<ul><li><a href=#1>Testing</a></li><li><a href=#2>Testing</a></li></ul>")
   }
 
   exports.testNoteListViewInstanceOf = testNoteListViewInstanceOf
