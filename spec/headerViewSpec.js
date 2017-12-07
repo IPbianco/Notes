@@ -1,5 +1,5 @@
 (function(exports) {
-    function testgetHeaderHTML() {
+    function testGetHeaderHTML() {
     var headerView = new HeaderView()
     return assert.returns(headerView.getHeaderHTML(),
     '<h1>Notes</h1>' +
@@ -11,6 +11,6 @@
     '</div>'
     )
   }
-  exports.testgetHeaderHTML = testgetHeaderHTML
+  exports.testGetHeaderHTML = testGetHeaderHTML
 
 })(this)
