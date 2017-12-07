@@ -26,18 +26,16 @@
       this.getContentDiv().innerHTML = this.getHeaderView().getHeaderHTML()
     },
 
-    _setupButtonToShowNotes: function(doc = document, createButtonId = "create", newNoteId = "new-note", linksListId = "links-list", currentNoteId = "current-note", NoteListViewConstructor = NoteListView, NoteViewConstructor = NoteView, page = window) {
+    _setupButtonToShowNotes: function(doc = document, createButtonId = "create", newNoteId = "new-note", linksListId = "links-list", NoteListViewConstructor = NoteListView) {
 
       var createButton = doc.getElementById(createButtonId);
       var newNote = doc.getElementById(newNoteId);
       var linksList = doc.getElementById(linksListId);
-      var noteText = doc.getElementById(currentNoteId);
       var self = this
 
       createButton.addEventListener("click", function() {
         _createNote();
         _loadLinks(NoteListViewConstructor);
-        _addListeners(NoteViewConstructor, page);
       })
 
       function _createNote() {
@@ -53,12 +51,16 @@
         var noteListView = new NoteListViewConstructor(self.getNoteList());
         linksList.innerHTML = noteListView.getListHTML() ;
       }
+    },
 
-      function _addListeners(NoteViewConstructor, page) {
-        page.addEventListener("hashchange", function() {
-          _renderNote(NoteViewConstructor, page);
-        });
-      }
+    _setupLinkToShowNote: function(doc = document, currentNoteId = "current-note", NoteViewConstructor = NoteView, page = window) {
+
+      var self = this
+      var noteText = doc.getElementById(currentNoteId);
+
+      page.addEventListener("hashchange", function() {
+        _renderNote(NoteViewConstructor, page);
+      });
 
       function _renderNote(NoteViewConstructor, page) {
         var noteView = new NoteViewConstructor(self.getNoteList().getNotes()[(_getIdFromUrl(page.location))-1])

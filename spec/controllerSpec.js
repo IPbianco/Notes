@@ -2,14 +2,14 @@
 
 (function(exports) {
   var click
-  var renderNote
+  var showNote
   var countAddNote = 0
   var fakeButton = { addEventListener: function(_, callback) {click = callback } }
   var fakeNewNote = { value: null }
   var fakeLinksList = { innerHTML: null }
   var fakeNoteText = { innerHTML: null }
   var fakeLocation = { hash: "index.html#1" }
-  var fakeWindow = { location: fakeLocation, addEventListener: function(_, callback) {renderNote = callback} }
+  var fakeWindow = { location: fakeLocation, addEventListener: function(_, callback) {showNote = callback} }
   var fakeDocument = { getElementById: function(arg) {
                         switch (arg) {
                           case "create":
@@ -48,8 +48,9 @@
   }
 
   controller._setMainView()
-  controller._setupButtonToShowNotes(fakeDocument, "create", "new-note", "links-list", "current-note", FakeNoteListView, FakeNoteView, fakeWindow)
+  controller._setupButtonToShowNotes(fakeDocument, "create", "new-note", "links-list", FakeNoteListView)
   click()
+  controller._setupLinkToShowNote(fakeDocument, "current-note", FakeNoteView, fakeWindow)
 
 
   function testControllerGetContentDiv() {
@@ -80,8 +81,8 @@
     return assert.returns(fakeLinksList.innerHTML, "List of links")
   }
 
-  function testControllerSetupButtonToShowNotesAddListenersLink1() {
-    renderNote()
+  function testControllerSetupLinkToShowNote() {
+    showNote()
     return assert.returns(fakeNoteText.innerHTML, "Fake note 1")
   }
 
@@ -92,6 +93,6 @@
   exports.testControllerSetupButtonToShowNotesCreateNoteAddNote = testControllerSetupButtonToShowNotesCreateNoteAddNote
   exports.testControllerSetupButtonToShowNotesCreateNoteResetNote = testControllerSetupButtonToShowNotesCreateNoteResetNote
   exports.testControllerSetupButtonToShowNotesLoadLinks = testControllerSetupButtonToShowNotesLoadLinks
-  exports.testControllerSetupButtonToShowNotesAddListenersLink1 = testControllerSetupButtonToShowNotesAddListenersLink1
+  exports.testControllerSetupLinkToShowNote = testControllerSetupLinkToShowNote
 
 })(this)

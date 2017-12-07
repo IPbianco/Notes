@@ -7,4 +7,6 @@ window.addEventListener("load", function() {
 
   controller._setMainView()
   controller._setupButtonToShowNotes()
+  controller._setupLinkToShowNote()
+
 });
