@@ -31,14 +31,13 @@
       var createButton = doc.getElementById(createButtonId);
       var newNote = doc.getElementById(newNoteId);
       var linksList = doc.getElementById(linksListId);
-      var links = doc.getElementsByTagName(linksTag);
       var noteText = doc.getElementById(currentNoteId);
       var self = this
 
       createButton.addEventListener("click", function() {
         _createNote();
         _loadLinks(NoteListViewConstructor);
-        _addListeners(links, NoteViewConstructor);
+        _addListeners(NoteViewConstructor);
       })
 
       function _createNote() {
@@ -55,17 +54,22 @@
         linksList.innerHTML = noteListView.getListHTML() ;
       }
 
-      function _addListeners(links, NoteViewConstructor) {
-        for(let i=0; i < links.length; i++) {
-          links[i].addEventListener("click", function() {
-            _renderNote(i, NoteViewConstructor);
-          });
-        };
+      function _addListeners(NoteViewConstructor) {
+        console.log(8)
+        window.addEventListener("hashchange", function() {
+          console.log(9)
+          _renderNote(NoteViewConstructor);
+        });
       }
 
-      function _renderNote(i, NoteViewConstructor) {
-        var noteView = new NoteViewConstructor(self.getNoteList().getNotes()[i])
+      function _renderNote(NoteViewConstructor) {
+        console.log(_getIdFromUrl(window.location))
+        var noteView = new NoteViewConstructor(self.getNoteList().getNotes()[_getIdFromUrl(window.location) + 1])
         noteText.innerHTML = `${noteView.getNoteHTML()}`;
+      }
+
+      function _getIdFromUrl(location) {
+        return location.hash.split("#")[1]
       }
     }
   }
