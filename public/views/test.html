@@ -9,6 +9,7 @@
     <script src="../js/headerView.js"></script>
     <script src="../js/noteListView.js"></script>
     <script src="../js/noteView.js"></script>
+    <script src="../js/controller.js"></script>
 
     <!-- include spec files here... -->
     <script src="../../spec/assertions.js"></script>
@@ -17,6 +18,7 @@
     <script src="../../spec/headerViewSpec.js"></script>
     <script src="../../spec/noteListViewSpec.js"></script>
     <script src="../../spec/noteViewSpec.js"></script>
+    <script src="../../spec/controllerSpec.js"></script>
   </head>
   <body>
     <div>
@@ -39,6 +41,11 @@
       testList.innerHTML+= `<li> ${testGetNote.name} : ${testGetNote()} </li>`
       testList.innerHTML+= `<li> ${testGetNoteHTML.name} : ${testGetNoteHTML()} </li>`
       testList.innerHTML+= `<li> ${testGetNoteHeaderHTML.name} : ${testGetNoteHeaderHTML()} </li>`
+      testList.innerHTML+= `<li> ${testControllerGetContentDiv.name} : ${testControllerGetContentDiv()} </li>`
+      testList.innerHTML+= `<li> ${testControllerGetHeaderView.name} : ${testControllerGetHeaderView()} </li>`
+      testList.innerHTML+= `<li> ${testControllerGetNoteList.name} : ${testControllerGetNoteList()} </li>`
+      testList.innerHTML+= `<li> ${testControllerSetMainView.name} : ${testControllerSetMainView()} </li>`
+      testList.innerHTML+= `<li> ${testControllerSetupButtonToShowNotes.name} : ${testControllerSetupButtonToShowNotes()} </li>`
    </script>
   </body>
 </html>

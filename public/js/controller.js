@@ -1,13 +1,11 @@
 "use strict";
 
 (function(exports) {
+
   function Controller(contentDiv, noteList, headerView) {
     this._contentDiv = contentDiv
     this._noteList = noteList
     this._headerView = headerView
-
-    this._setMainView()
-    this._setupButtonToShowNotes()
   }
 
   Controller.prototype = {
@@ -28,19 +26,19 @@
       this.getContentDiv().innerHTML = this.getHeaderView().getHeaderHTML()
     },
 
-    _setupButtonToShowNotes: function() {
+    _setupButtonToShowNotes: function(doc = document, createButtonId = "create", newNoteId = "new-note", linksListId = " links-list", linksTag = "a", currentNoteId = "current-note", NoteListViewConstructor = NoteListView, NoteViewConstructor = NoteView) {
 
-      var createButton = document.getElementById("create");
-      var newNote = document.getElementById("new-note");
-      var linksList = document.getElementById("links-list");
-      var links = document.getElementsByTagName("a");
-      var noteText = document.getElementById("current-note");
+      var createButton = doc.getElementById(createButtonId);
+      var newNote = doc.getElementById(newNoteId);
+      var linksList = doc.getElementById(linksListId);
+      var links = doc.getElementsByTagName(linksTag);
+      var noteText = doc.getElementById(currentNoteId);
       var self = this
 
       createButton.addEventListener("click", function() {
         _createNote();
-        _loadLinks();
-        _addListeners(links);
+        _loadLinks(NoteListViewConstructor);
+        _addListeners(links, NoteViewConstructor);
       })
 
       function _createNote() {
@@ -52,22 +50,21 @@
         newNote.value = ""
       }
 
-      function _loadLinks() {
-        var noteListView = new NoteListView(self.getNoteList());
+      function _loadLinks(NoteListViewConstructor) {
+        var noteListView = new NoteListViewConstructor(self.getNoteList());
         linksList.innerHTML = noteListView.getListHTML() ;
       }
 
-      function _addListeners(links) {
-          for(let i=0; i < links.length; i++) {
-              links[i].addEventListener("click",
-                  function() {
-                      _renderNote(i);
-              });
-          };
+      function _addListeners(links, NoteViewConstructor) {
+        for(let i=0; i < links.length; i++) {
+          links[i].addEventListener("click", function() {
+            _renderNote(i, NoteViewConstructor);
+          });
+        };
       }
 
-      function _renderNote(i) {
-        var noteView = new NoteView(self.getNoteList().getNotes()[i])
+      function _renderNote(i, NoteViewConstructor) {
+        var noteView = new constructor(self.getNoteList().getNotes()[i])
         noteText.innerHTML = `${noteView.getNoteHTML()}`;
       }
     }
