@@ -2,11 +2,14 @@
 
 (function(exports) {
   var click
-  var fakeButton = { addEventListener: function(_, callback) { click = callback } }
+  var clickLink
+  var countAddNote = 0
+  var fakeButton = { addEventListener: function(_, callback) {click = callback } }
   var fakeNewNote = { value: null }
   var fakeLinksList = { innerHTML: null }
   var fakeCurrentNote
-  var fakeLinks = { length: 1 }
+  var fakeLink = { addEventListener: function(_, callback) {clickLink = callback} }
+  var fakeLinks = [fakeLink]
 
   var fakeDocument = { getElementById: function(arg) {
                         switch (arg) {
@@ -30,7 +33,7 @@
 
   var fakeContentDiv = { innerHTML: null }
   var fakeHeaderView = { getHeaderHTML: function() { return "Header" } }
-  var fakeNoteList = { addNote: function() {} }
+  var fakeNoteList = { addNote: function() { countAddNote++ } }
   var controller = new Controller(fakeContentDiv, fakeNoteList, fakeHeaderView)
 
   function FakeNoteListView() {
@@ -57,16 +60,24 @@
     return assert.returns(controller.getContentDiv().innerHTML, "Header")
   }
 
-  function testControllerSetupButtonToShowNotes() {
+  function testControllerSetupButtonToShowNotesCreateNoteAddNote() {
     controller._setupButtonToShowNotes(fakeDocument, "create", "new-note", "links-list", "a", "current-note", FakeNoteListView, FakeNoteView)
     click()
-    // return assert.returns(controller.getContentDiv().innerHTML, "Header")
+    return assert.isTrue(countAddNote === 1)
+  }
+
+  function testControllerSetupButtonToShowNotesCreateNoteResetNote() {
+    fakeNewNote.value = null
+    controller._setupButtonToShowNotes(fakeDocument, "create", "new-note", "links-list", "a", "current-note", FakeNoteListView, FakeNoteView)
+    click()
+    return assert.isTrue(fakeNewNote.value === "")
   }
 
   exports.testControllerGetContentDiv = testControllerGetContentDiv
   exports.testControllerGetHeaderView = testControllerGetHeaderView
   exports.testControllerGetNoteList = testControllerGetNoteList
   exports.testControllerSetMainView = testControllerSetMainView
-  exports.testControllerSetupButtonToShowNotes = testControllerSetupButtonToShowNotes
+  exports.testControllerSetupButtonToShowNotesCreateNoteAddNote = testControllerSetupButtonToShowNotesCreateNoteAddNote
+  exports.testControllerSetupButtonToShowNotesCreateNoteResetNote = testControllerSetupButtonToShowNotesCreateNoteResetNote
 
 })(this)
