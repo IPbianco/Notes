@@ -5,10 +5,10 @@
    	this._text = text;
     this._id = id
     this._MAX_SUMMARY_LENGTH = 20;
-   	this.setSumary(text);
+   	this.setSummary(text);
   }
 
-  Note.prototype.setSumary = function(text) {
+  Note.prototype.setSummary = function(text) {
   	this._summary = (text.length < this._MAX_SUMMARY_LENGTH) ? text : text.substr(0, this._MAX_SUMMARY_LENGTH) + '...';
   }
 
