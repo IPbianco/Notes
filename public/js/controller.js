@@ -26,7 +26,7 @@
       this.getContentDiv().innerHTML = this.getHeaderView().getHeaderHTML()
     },
 
-    _setupButtonToShowNotes: function(doc = document, createButtonId = "create", newNoteId = "new-note", linksListId = " links-list", linksTag = "a", currentNoteId = "current-note", NoteListViewConstructor = NoteListView, NoteViewConstructor = NoteView) {
+    _setupButtonToShowNotes: function(doc = document, createButtonId = "create", newNoteId = "new-note", linksListId = "links-list", linksTag = "a", currentNoteId = "current-note", NoteListViewConstructor = NoteListView, NoteViewConstructor = NoteView) {
 
       var createButton = doc.getElementById(createButtonId);
       var newNote = doc.getElementById(newNoteId);
