@@ -64,7 +64,7 @@
       }
 
       function _renderNote(i, NoteViewConstructor) {
-        var noteView = new constructor(self.getNoteList().getNotes()[i])
+        var noteView = new NoteViewConstructor(self.getNoteList().getNotes()[i])
         noteText.innerHTML = `${noteView.getNoteHTML()}`;
       }
     }
