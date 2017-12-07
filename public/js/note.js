@@ -1,8 +1,9 @@
 "use strict";
 
 (function(exports) {
-  function Note(text) {
+  function Note(text, id = 0) {
    	this._text = text;
+    this._id = id
     this._MAX_SUMMARY_LENGTH = 20;
    	this.setSumary(text);
   }
@@ -17,6 +18,10 @@
 
   Note.prototype.getSummary = function () {
   	return this._summary;
+  }
+
+  Note.prototype.getNoteId = function () {
+    return this._id;
   }
 
   exports.Note = Note

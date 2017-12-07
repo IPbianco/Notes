@@ -1,8 +1,9 @@
 "use strict";
 
 (function(exports) {
-  function FakeNote(text) {
+  function FakeNote(text, id = 0) {
     this._text = text;
+    this._id = id
     this._MAX_SUMMARY_LENGTH = 20;
     this.setSumary(text);
   }
@@ -15,6 +16,10 @@
     return this._text;
   }
 
+  FakeNote.prototype.getNoteId = function () {
+    return this._id;
+  }
+
   FakeNote.prototype.getSummary = function () {
     return this._summary;
   }
@@ -25,12 +30,6 @@
     return assert.returns(notesArrayString, "[]")
   }
 
-  function testAddsNoteToArray() {
-    var notes = new NoteList()
-    notes.addNote("Antonio", FakeNote)
-    return assert.returns(notes.getNotes().length, 1)
-  }
-
   function testGetsLastNote() {
     var notes = new NoteList()
     notes.addNote("Antonio", FakeNote)
@@ -39,7 +38,21 @@
     return assert.returns(lastNote.getText(), "Ignacio")
   }
 
+  function testAddsNoteToArray() {
+    var notes = new NoteList()
+    notes.addNote("Antonio", FakeNote)
+    return assert.returns(notes.getNotes().length, 1)
+  }
+
+  function testAddsNoteToArrayIncreasesID() {
+    var notes = new NoteList()
+    notes.addNote("Antonio", FakeNote)
+    return assert.returns(notes.getLast().getNoteId(), 1)
+  }
+
   exports.testGetNotesReturnsArray = testGetNotesReturnsArray;
   exports.testAddsNoteToArray = testAddsNoteToArray
   exports.testGetsLastNote = testGetsLastNote
+  exports.testAddsNoteToArrayIncreasesID = testAddsNoteToArrayIncreasesID
+
 })(this)

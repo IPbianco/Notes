@@ -15,10 +15,8 @@
 
   NoteListView.prototype.getListHTML = function() {
     var listHTML = "";
-    var index = 1
     this.getNotesList().getNotes().forEach(function(note) {
-      listHTML += _addTag((_addTag(note.getSummary(),"a", ` href=#${index}`)),"li");
-      index ++
+      listHTML += _addTag((_addTag(note.getSummary(),"a", ` href=#${note.getNoteId()}`)),"li");
     })
     return _addTag(listHTML, "ul");
   }

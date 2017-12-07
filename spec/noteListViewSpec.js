@@ -2,8 +2,9 @@
 
 (function(exports) {
 
-  function FakeNote(text) {
+  function FakeNote(text, id = 0) {
     this._text = text;
+    this._id = id
     this._MAX_SUMMARY_LENGTH = 20;
     this.setSumary(text);
   }
@@ -16,16 +17,22 @@
     return this._summary;
   }
 
+  FakeNote.prototype.getNoteId = function () {
+    return this._id;
+  }
+
   function FakeNoteList() {
     this._notes = []
+    this._counter = 1
   }
 
   FakeNoteList.prototype.getNotes = function() {
     return this._notes
   }
 
-  FakeNoteList.prototype.addNote = function(text, constructor = FakeNote) {
-    this._notes.push(new constructor(text))
+  FakeNoteList.prototype.addNote = function(text, constructor = Note) {
+    this._notes.push(new constructor(text, this._counter))
+    this._counter ++
   }
 
   function testNoteListViewInstanceOf() {
