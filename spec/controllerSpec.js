@@ -2,16 +2,14 @@
 
 (function(exports) {
   var click
-  var clickLink1
-  var clickLink2
+  var renderNote
   var countAddNote = 0
   var fakeButton = { addEventListener: function(_, callback) {click = callback } }
   var fakeNewNote = { value: null }
   var fakeLinksList = { innerHTML: null }
   var fakeNoteText = { innerHTML: null }
-  var fakeLink1 = { addEventListener: function(_, callback) {clickLink1 = callback}, text: "Link1" }
-  var fakeLink2 = { addEventListener: function(_, callback) {clickLink2 = callback}, text: "Link2" }
-  var fakeLinks = [fakeLink1, fakeLink2]
+  var fakeLocation = { hash: "index.html#1" }
+  var fakeWindow = { location: fakeLocation, addEventListener: function(_, callback) {renderNote = callback} }
   var fakeDocument = { getElementById: function(arg) {
                         switch (arg) {
                           case "create":
@@ -34,20 +32,23 @@
 
   var fakeContentDiv = { innerHTML: null }
   var fakeHeaderView = { getHeaderHTML: function() { return "Header" } }
-  var fakeNoteList = { addNote: function() { countAddNote++ }, getNotes: function() { return fakeLinks } }
+  var fakeNote1 = { text: "Fake note 1" }
+  var fakeNote2 = { text: "Fake note 2" }
+  var fakeNotes = [fakeNote1, fakeNote2]
+  var fakeNoteList = { addNote: function() { countAddNote++ }, getNotes: function() { return fakeNotes } }
   var controller = new Controller(fakeContentDiv, fakeNoteList, fakeHeaderView)
 
   function FakeNoteListView() {
     FakeNoteListView.prototype.getListHTML = function() { return "List of links" }
   }
 
-  function FakeNoteView(link) {
-    this._link = link
-    FakeNoteView.prototype.getNoteHTML = function() {return this._link.text }
+  function FakeNoteView(note) {
+    this._note = note
+    FakeNoteView.prototype.getNoteHTML = function() {return this._note.text }
   }
 
   controller._setMainView()
-  controller._setupButtonToShowNotes(fakeDocument, "create", "new-note", "links-list", "a", "current-note", FakeNoteListView, FakeNoteView)
+  controller._setupButtonToShowNotes(fakeDocument, "create", "new-note", "links-list", "current-note", FakeNoteListView, FakeNoteView, fakeWindow)
   click()
 
 
@@ -80,13 +81,8 @@
   }
 
   function testControllerSetupButtonToShowNotesAddListenersLink1() {
-    clickLink1()
-    return assert.returns(fakeNoteText.innerHTML, "Link1")
-  }
-
-  function testControllerSetupButtonToShowNotesAddListenersLink2() {
-    clickLink2()
-    return assert.returns(fakeNoteText.innerHTML, "Link2")
+    renderNote()
+    return assert.returns(fakeNoteText.innerHTML, "Fake note 1")
   }
 
   exports.testControllerGetContentDiv = testControllerGetContentDiv
@@ -97,6 +93,5 @@
   exports.testControllerSetupButtonToShowNotesCreateNoteResetNote = testControllerSetupButtonToShowNotesCreateNoteResetNote
   exports.testControllerSetupButtonToShowNotesLoadLinks = testControllerSetupButtonToShowNotesLoadLinks
   exports.testControllerSetupButtonToShowNotesAddListenersLink1 = testControllerSetupButtonToShowNotesAddListenersLink1
-  exports.testControllerSetupButtonToShowNotesAddListenersLink2 = testControllerSetupButtonToShowNotesAddListenersLink2
 
 })(this)
