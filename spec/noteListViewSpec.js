@@ -1,6 +1,6 @@
 "use strict";
 
-(function(exports) {
+(function() {
 
   function FakeNote(text, id = 0) {
     this._text = text;
@@ -35,12 +35,12 @@
     this._counter ++
   }
 
-  function testNoteListViewInstanceOf() {
+  runner.register(function testNoteListViewInstanceOf() {
     var noteListView = new NoteListView()
     return assert.isTrue(noteListView instanceof NoteListView)
-  }
+  })
 
-  function testGetListHTML1Note() {
+  runner.register(function testGetListHTML1Note() {
     var fakeNoteList,
         noteListView;
 
@@ -48,9 +48,9 @@
     fakeNoteList.addNote("Testing", FakeNote)
     noteListView = new NoteListView(fakeNoteList)
     return assert.returns(noteListView.getListHTML(), "<ul><li><a href=#1>Testing</a></li></ul>")
-  }
+  })
 
-  function testGetListHTML2Notes() {
+  runner.register(function testGetListHTML2Notes() {
     var fakeNoteList,
         noteListView;
 
@@ -59,10 +59,5 @@
     fakeNoteList.addNote("Testing", FakeNote)
     noteListView = new NoteListView(fakeNoteList)
     return assert.returns(noteListView.getListHTML(), "<ul><li><a href=#1>Testing</a></li><li><a href=#2>Testing</a></li></ul>")
-  }
-
-  exports.testNoteListViewInstanceOf = testNoteListViewInstanceOf
-  exports.testGetListHTML1Note = testGetListHTML1Note
-  exports.testGetListHTML2Notes = testGetListHTML2Notes
-
-})(this)
+  })
+})()

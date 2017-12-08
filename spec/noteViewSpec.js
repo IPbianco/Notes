@@ -1,6 +1,6 @@
 "use strict";
 
-(function (exports) {
+(function () {
 
   function FakeNote(text) {
     this._text = text;
@@ -14,20 +14,16 @@
 
   var noteview = new NoteView(fakeNote);
 
-  function testGetNote() {
+  runner.register(function testGetNote() {
     return assert.returns(noteview.getNote(), fakeNote)
-  }
+  })
 
-  function testGetNoteHTML() {
+  runner.register(function testGetNoteHTML() {
     return assert.returns(noteview.getNoteHTML(), `<h2>Note</h2><div>${fakeNote.getText()}</div>`)
-  }
+  })
 
-  function testGetNoteHeaderHTML() {
+  runner.register(function testGetNoteHeaderHTML() {
     return assert.returns(noteview.getNoteHeaderHTML(), '<h2>Note</h2>')
-  }
+  })
 
-  exports.testGetNote = testGetNote
-  exports.testGetNoteHTML = testGetNoteHTML
-  exports.testGetNoteHeaderHTML= testGetNoteHeaderHTML
-
-})(this)
+})()

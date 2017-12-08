@@ -1,6 +1,6 @@
 "use strict";
 
-(function(exports) {
+(function() {
   var click
   var showNote
   var countAddNote = 0
@@ -52,47 +52,37 @@
   click()
   controller._setupLinkToShowNote(fakeDocument, "current-note", FakeNoteView, fakeWindow)
 
-
-  function testControllerGetContentDiv() {
+  runner.register(function testControllerGetContentDiv() {
     return assert.returns(controller.getContentDiv(), fakeContentDiv)
-  }
+  })
 
-  function testControllerGetHeaderView() {
+  runner.register(function testControllerGetHeaderView() {
     return assert.returns(controller.getHeaderView(), fakeHeaderView)
-  }
+  })
 
-  function testControllerGetNoteList() {
+  runner.register(function testControllerGetNoteList() {
     return assert.returns(controller.getNoteList(), fakeNoteList)
-  }
+  })
 
-  function testControllerSetMainView() {
+  runner.register(function testControllerSetMainView() {
     return assert.returns(controller.getContentDiv().innerHTML, "Header")
-  }
+  })
 
-  function testControllerSetupButtonToShowNotesCreateNoteAddNote() {
+  runner.register(function testControllerSetupButtonToShowNotesCreateNoteAddNote() {
     return assert.isTrue(countAddNote === 1)
-  }
+  })
 
-  function testControllerSetupButtonToShowNotesCreateNoteResetNote() {
+  runner.register(function testControllerSetupButtonToShowNotesCreateNoteResetNote() {
     return assert.isTrue(fakeNewNote.value === "")
-  }
+  })
 
-  function testControllerSetupButtonToShowNotesLoadLinks() {
+  runner.register(function testControllerSetupButtonToShowNotesLoadLinks() {
     return assert.returns(fakeLinksList.innerHTML, "List of links")
-  }
+  })
 
-  function testControllerSetupLinkToShowNote() {
+  runner.register(function testControllerSetupLinkToShowNote() {
     showNote()
     return assert.returns(fakeNoteText.innerHTML, "Fake note 1")
-  }
+  })
 
-  exports.testControllerGetContentDiv = testControllerGetContentDiv
-  exports.testControllerGetHeaderView = testControllerGetHeaderView
-  exports.testControllerGetNoteList = testControllerGetNoteList
-  exports.testControllerSetMainView = testControllerSetMainView
-  exports.testControllerSetupButtonToShowNotesCreateNoteAddNote = testControllerSetupButtonToShowNotesCreateNoteAddNote
-  exports.testControllerSetupButtonToShowNotesCreateNoteResetNote = testControllerSetupButtonToShowNotesCreateNoteResetNote
-  exports.testControllerSetupButtonToShowNotesLoadLinks = testControllerSetupButtonToShowNotesLoadLinks
-  exports.testControllerSetupLinkToShowNote = testControllerSetupLinkToShowNote
-
-})(this)
+})()

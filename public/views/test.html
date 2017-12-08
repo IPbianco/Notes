@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+
     <!-- include source files here... -->
     <script src="../js/note.js"></script>
     <script src="../js/noteList.js"></script>
@@ -10,6 +11,7 @@
     <script src="../js/noteListView.js"></script>
     <script src="../js/noteView.js"></script>
     <script src="../js/controller.js"></script>
+    <script src="../../lib/testRunner.js"></script>
 
     <!-- include spec files here... -->
     <script src="../../spec/assertions.js"></script>
@@ -23,34 +25,10 @@
   <body>
     <div>
       <ul id="test-list">
-
       </ul>
     </div>
     <script>
-      var testList = document.getElementById("test-list")
-      testList.innerHTML+= `<li> ${testNoteInstanceOfNote.name} : ${testNoteInstanceOfNote()} </li>`
-      testList.innerHTML+= `<li> ${testGetTextReturnsTextProperty.name} : ${testGetTextReturnsTextProperty()} </li>`
-      testList.innerHTML+= `<li> ${testGetSummaryReturnsSummaryProperty.name} : ${testGetSummaryReturnsSummaryProperty()} </li>`
-      testList.innerHTML+= `<li> ${testGetNotesReturnsArray.name} : ${testGetNotesReturnsArray()} </li>`
-      testList.innerHTML+= `<li> ${testAddsNoteToArray.name} : ${testAddsNoteToArray()} </li>`
-      testList.innerHTML+= `<li> ${testGetsLastNote.name} : ${testGetsLastNote()} </li>`
-      testList.innerHTML+= `<li> ${testGetHeaderHTML.name} : ${testGetHeaderHTML()} </li>`
-      testList.innerHTML+= `<li> ${testNoteListViewInstanceOf.name} : ${testNoteListViewInstanceOf()} </li>`
-      testList.innerHTML+= `<li> ${testGetListHTML1Note.name} : ${testGetListHTML1Note()} </li>`
-      testList.innerHTML+= `<li> ${testGetListHTML2Notes.name} : ${testGetListHTML2Notes()} </li>`
-      testList.innerHTML+= `<li> ${testGetNote.name} : ${testGetNote()} </li>`
-      testList.innerHTML+= `<li> ${testGetNoteHTML.name} : ${testGetNoteHTML()} </li>`
-      testList.innerHTML+= `<li> ${testGetNoteHeaderHTML.name} : ${testGetNoteHeaderHTML()} </li>`
-      testList.innerHTML+= `<li> ${testControllerGetContentDiv.name} : ${testControllerGetContentDiv()} </li>`
-      testList.innerHTML+= `<li> ${testControllerGetHeaderView.name} : ${testControllerGetHeaderView()} </li>`
-      testList.innerHTML+= `<li> ${testControllerGetNoteList.name} : ${testControllerGetNoteList()} </li>`
-      testList.innerHTML+= `<li> ${testControllerSetMainView.name} : ${testControllerSetMainView()} </li>`
-      testList.innerHTML+= `<li> ${testControllerSetupButtonToShowNotesCreateNoteAddNote.name} : ${testControllerSetupButtonToShowNotesCreateNoteAddNote()} </li>`
-      testList.innerHTML+= `<li> ${testControllerSetupButtonToShowNotesCreateNoteResetNote.name} : ${testControllerSetupButtonToShowNotesCreateNoteResetNote()} </li>`
-      testList.innerHTML+= `<li> ${testControllerSetupButtonToShowNotesLoadLinks.name} : ${testControllerSetupButtonToShowNotesLoadLinks()} </li>`
-      testList.innerHTML+= `<li> ${testControllerSetupLinkToShowNote.name} : ${testControllerSetupLinkToShowNote()} </li>`
-      testList.innerHTML+= `<li> ${testGetNoteId.name} : ${testGetNoteId()} </li>`
-      testList.innerHTML+= `<li> ${testAddsNoteToArrayIncreasesID.name} : ${testAddsNoteToArrayIncreasesID()} </li>`
+      runner.run()
    </script>
   </body>
 </html>
